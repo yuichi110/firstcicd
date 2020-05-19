@@ -10,14 +10,16 @@ pipeline {
         sh "python3 --version"
       }
     }
-    stage('Clean') {
+    stage('Clean up') {
       steps {
-        sh "kill %1 || true"
+        sh "stop background flask job"
+        sh "sudo kill %1 || true"
       }
     }
     stage('Deploy') {
       steps {
-        sh "python3 server.py >> log.txt 2>&1 &"
+        sh "start flask as background job"
+        sh "sudo python3 server.py >> log.txt 2>&1 &"
       }
     }
   }
