@@ -10,7 +10,7 @@ pipeline {
     stage('Cleanup') {
       steps {
         echo "stop background flask job"
-        sh "sudo kill %1 || true"
+        sh "sudo kill `pgrep python3` || true"
       }
     }
     stage('Deploy') {
