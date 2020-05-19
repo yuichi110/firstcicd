@@ -10,5 +10,15 @@ pipeline {
         sh "python3 --version"
       }
     }
+    stage('Clean') {
+      steps {
+        sh "kill %1 || true"
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh "python3 server.py >> log.txt 2>&1 &"
+      }
+    }
   }
 }
