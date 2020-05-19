@@ -12,13 +12,13 @@ pipeline {
     }
     stage('Clean up') {
       steps {
-        sh "stop background flask job"
+        sh "echo 'stop background flask job'"
         sh "sudo kill %1 || true"
       }
     }
     stage('Deploy') {
       steps {
-        sh "start flask as background job"
+        sh "echo 'start flask as background job'"
         sh "sudo python3 server.py >> log.txt 2>&1 &"
       }
     }
