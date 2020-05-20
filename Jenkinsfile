@@ -16,7 +16,7 @@ pipeline {
     stage('Deploy') {
       steps {
         echo "start flask as background job"
-        sh "sudo python3 server.py >> log.txt 2>&1 &"
+        sh "sudo nohup python3 server.py >> log.txt 2>&1 &"
       }
     }
   }
